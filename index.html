@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>deepcrypt24</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; }
+    #dropzone {
+      border: 2px dashed #666;
+      padding: 2rem;
+      text-align: center;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    #dropzone.dragover {
+      border-color: #0078d4;
+      color: #0078d4;
+      background: #f0f8ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>deepcrypt24</h1>
+  <p>Datei per Drag & Drop oder Auswahl laden, Passwort eingeben, dann verschlüsseln/entschlüsseln.</p>
+
+  <div id="dropzone">Datei hierher ziehen oder unten auswählen</div>
+  <input type="file" id="fileInput"><br><br>
+
+  <label>Passwort:
+    <input type="password" id="password">
+  </label><br><br>
+
+  <button id="encryptBtn">Verschlüsseln</button>
+  <button id="decryptBtn">Entschlüsseln</button>
+
+  <p id="status"></p>
+
+  <script src="app.js"></script>
+</body>
+</html>
