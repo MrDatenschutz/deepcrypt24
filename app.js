@@ -40,7 +40,7 @@ fileInput.addEventListener('change', e => {
   }
 });
 
-// Hilfsfunktionen Crypto
+// Crypto helpers
 async function getKeyFromPassword(password, salt) {
   const enc = new TextEncoder();
   const keyMaterial = await crypto.subtle.importKey(
@@ -85,7 +85,7 @@ function downloadBlob(data, filename) {
   URL.revokeObjectURL(url);
 }
 
-// Verschlüsseln
+// Encrypt
 encryptBtn.addEventListener('click', async () => {
   if (!currentFile) {
     statusEl.textContent = 'Keine Datei ausgewählt.';
@@ -111,7 +111,6 @@ encryptBtn.addEventListener('click', async () => {
       fileArrayBuffer
     );
 
-    // Format: [salt(16)][iv(12)][ciphertext(...)]
     const result = concatBuffers(salt.buffer, iv.buffer, ciphertext);
     downloadBlob(result, currentFile.name + '.enc');
     statusEl.textContent = 'Verschlüsselung fertig. Datei heruntergeladen.';
@@ -121,7 +120,7 @@ encryptBtn.addEventListener('click', async () => {
   }
 });
 
-// Entschlüsseln
+// Decrypt
 decryptBtn.addEventListener('click', async () => {
   if (!currentFile) {
     statusEl.textContent = 'Keine Datei ausgewählt.';
@@ -149,7 +148,6 @@ decryptBtn.addEventListener('click', async () => {
       ciphertext
     );
 
-    // Original-Dateiname grob rekonstruieren
     let name = currentFile.name.replace(/\.enc$/i, '');
     if (name === currentFile.name) {
       name = 'decrypted_' + currentFile.name;
